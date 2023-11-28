@@ -16,10 +16,5 @@ class Gui:
         self.button_exit.pack()
         self.frame_two.pack(anchor='s', side='bottom', pady=20)
 
-        # VOTE TEXT
-        self.frame_one = Frame(self.window)
-        self.label_name = Label(self.frame_one, text='Time to make your vote!')
-        self.label_name.pack(anchor='s', side='left')
-        self.frame_one.pack(anchor='s', side='bottom', pady=1)
 
 
