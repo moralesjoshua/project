@@ -1,19 +1,34 @@
 from tkinter import *
+from PIL import ImageTk, Image
 
 
 class Gui:
     def __init__(self, window):
         self.window = window
 
-        self.frame_one = Frame(self.window)
-        self.label_name = Label(self.frame_one, text='Name')
-        self.input_name = Entry(self.frame_one)
-        self.label_name.pack(side='left')
-        self.input_name.pack(padx=5, side='left')
-        self.frame_one.pack(anchor='w', padx=10, pady=10)
+        # VOTING PICTURE
+        self.original_image = Image.open("vote.png")
+        self.resized_image = self.original_image.resize((100, 100))
+        self.vote_img = ImageTk.PhotoImage(self.resized_image)
+        self.vote_label = Label(image=self.vote_img)
+        self.vote_label.pack(anchor='center', padx=10, pady=10)
 
         # EXIT BUTTON
-        self.frame_button = Frame(self.window)
-        self.button_compute = Button(self.frame_button, text='Exit', command=window.quit)
-        self.button_compute.pack(pady=10)
-        self.frame_button.pack()
+        self.frame_three = Frame(self.window)
+        self.button_exit = Button(self.frame_three, text='EXIT', command=window.quit)
+        self.button_exit.pack()
+        self.frame_three.pack(anchor='center', side='bottom', pady=10)
+
+        # VOTE TEXT
+        self.frame_one = Frame(self.window)
+        self.label_name = Label(self.frame_one, text='Time to make your vote!')
+        self.label_name.pack(anchor='center', side='left')
+        self.frame_one.pack(anchor='center', side='bottom', pady=50)
+
+        # VOTE BUTTON
+        self.frame_two = Frame(self.window)
+        self.button_exit = Button(self.frame_two, text='VOTE NOW', command=window.quit)
+        self.button_exit.pack(pady=5)
+        self.frame_two.pack(anchor='center', side='bottom', pady=10)
+
+
