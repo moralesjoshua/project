@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 
 
 class VoteGui:
@@ -65,6 +66,8 @@ class VoteGui:
 
     def vote_for_candidate(self, candidate):
         self.update_results(f"Voted for {candidate}")
+        messagebox.showinfo("Vote Confirmation", f"You voted for {candidate}")
+
         if candidate == "John":
             self.john_votes += 1
         elif candidate == "Jane":
@@ -81,6 +84,8 @@ class VoteGui:
 
             if third_party_candidate:
                 self.update_results(f"Voted for {third_party_candidate} (Third Party)")
+                messagebox.showinfo("Vote Confirmation", f"You voted for {third_party_candidate}")
+
                 self.third_party_votes += 1
                 self.third_party_candidate_entry.delete(0,END)
             else:
