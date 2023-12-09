@@ -4,6 +4,11 @@ from tkinter import messagebox
 
 class VoteGui:
     def __init__(self, window):
+        """
+        Initialize the VoteGui class.
+
+        Parameters: The main tkinter window.
+        """
         self.window = window
 
         # STARTING VOTES
@@ -56,7 +61,14 @@ class VoteGui:
         self.results_label = Label(self.window, text='')
         self.results_label.pack(pady=10)
 
-    def read_names_from_file(self, filename):
+    def read_names_from_file(self, filename: str) -> [str]:
+        """
+        Read names from a file and return a list of names.
+
+        Parameters: The name of the file to read.
+
+        Returns: A list of names read from the file.
+        """
         try:
             with open(filename, "r") as file:
                 return [line.strip() for line in file]
@@ -64,7 +76,12 @@ class VoteGui:
             print(f"Error: File '{filename}' not found.")
             return []
 
-    def vote_for_candidate(self, candidate):
+    def vote_for_candidate(self, candidate: str) -> None:
+        """
+        Vote for a candidate and updates the results.
+
+        Parameters: The name of the candidate.
+        """
         self.update_results(f"Voted for {candidate}")
         messagebox.showinfo("Vote Confirmation", f"You voted for {candidate}")
 
@@ -73,7 +90,10 @@ class VoteGui:
         elif candidate == "Jane":
             self.jane_votes += 1
 
-    def vote_for_third_party_candidate(self):
+    def vote_for_third_party_candidate(self) -> None:
+        """
+        Voting for a third-party candidate and update the results.
+        """
         third_party_candidate = self.third_party_candidate_entry.get().strip().capitalize()
         try:
             # Check if the input is a valid name
@@ -94,7 +114,10 @@ class VoteGui:
         except ValueError as e:
             self.update_results(str(e))
 
-    def show_total_votes(self):
+    def show_total_votes(self) -> None:
+        """
+        Shows total votes.
+        """
         if self.john_votes + self.jane_votes + self.third_party_votes == 0:
             self.update_results("You must vote to see total votes.")
         else:
@@ -102,9 +125,16 @@ class VoteGui:
 {self.third_party_votes}"
             self.update_results(total_votes_message)
 
-    def show_vote_options(self):
-        # self.vote_options_frame.grid_forget()
+    def show_vote_options(self) -> None:
+        """
+        Shows the frame which includes the voting options
+        """
         self.vote_options_frame.pack(pady=10)
 
-    def update_results(self, message):
+    def update_results(self, message: str) -> None:
+        """
+        Updates the results label.
+
+        Parameter: The message to display.
+        """
         self.results_label.config(text=message)
